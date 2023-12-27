@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../../images/exit(with border).png</file>
+        <file>../../images/exit.png</file>
+        <file>../../images/KartisTechnology(white).png</file>
+        <file>../../images/login with border.png</file>
+        <file>../../images/login.png</file>
+        <file>../../images/start.png</file>
+        <file>../../gui_tools/back.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../../../gui_tools/login with border.png</file>
+        <file>../../../gui_tools/login.png</file>
+        <file>../../../gui_tools/back.png</file>
+    </qresource>
+</RCC>
