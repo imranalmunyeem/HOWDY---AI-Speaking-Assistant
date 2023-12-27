@@ -4,12 +4,16 @@ from PyQt5.QtCore import QThread
 import speech_recognition as sr
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
-from cover_letter import create_cover_letter
-from resume_maker import create_resume
-from securityscanner import perform_security_scan
+from Business.crypto_assistant import crypto_analysis_assistant
+from Business.stock_assistant import stock_analysis_app
+from Professional.cover_letter import create_cover_letter
+from Security.fuzzing import automated_fuzzer
+from Security.port_scanner import perform_port_scan
+from Professional.resume_maker import create_resume
+from Security.securityscanner import perform_security_scan
 from jarvisChitChat import jarvyChatBot
 from JARVISmainfileGUI import Ui_JARVISmainUI
-from url_checker import url_threat_checker
+from Security.url_checker import url_threat_checker
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -263,6 +267,18 @@ class jarvisCodingClass(QThread):
 
         elif self.query == "url" or self.query == "threat" or self.query == "weburl":
             url_threat_checker()
+
+        elif self.query == "fuzz" or self.query == "fuz" or self.query == "fuzzing" or self.query == "fuzzing" or self.query == "fajing" or self.query == "fuj" or self.query == "fazing" or self.query == "playload":
+            automated_fuzzer()
+
+        elif self.query == "port" or self.query == "por" or self.query == "pol" or self.query == "pot":
+            perform_port_scan()
+
+        elif self.query == "stock" or self.query == "stok" or self.query == "estok" or self.query == "stroke":
+            stock_analysis_app()
+
+        elif self.query == "crypto" or self.query == "cryptocurrency" or self.query == "bitcoin" or self.query == "etherium" or self.query == "kripto" or self.query == "kipto":
+            crypto_analysis_assistant()
 
         elif 'wikipedia' in self.query:
             wikiQuery = self.query

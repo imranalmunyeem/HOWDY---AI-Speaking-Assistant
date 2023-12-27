@@ -20,6 +20,6 @@ try:
                  exit()
 except:
        print("Some Error Occurred Please Check Your Internet Connection !!")
-with open("passwords.txt", "r") as passwords:
+with open("../passwords.txt", "r") as passwords:
      bruteCracking(username,url,error)
 print("[!!] password not found in password list")
