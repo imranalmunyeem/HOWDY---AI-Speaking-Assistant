@@ -1,4 +1,6 @@
 import random, pywhatkit, pyttsx3, datetime, sys, time, os, pyautogui, requests, serial
+import webbrowser
+
 from PyQt5 import QtGui
 from PyQt5.QtCore import QThread
 import speech_recognition as sr
@@ -7,6 +9,10 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from Business.crypto_assistant import crypto_analysis_assistant
 from Business.stock_assistant import stock_analysis_app
 from Professional.cover_letter import create_cover_letter
+from Recommendations.business_recommendation import business_recommendation
+from Recommendations.movie_recommendation import movie_recommendation_program
+from Recommendations.recipe_recommendation import recipe_recommendation_system
+from Recommendations.series_recommendation import series_recommendation_program
 from Security.fuzzing import automated_fuzzer
 from Security.port_scanner import perform_port_scan
 from Professional.resume_maker import create_resume
@@ -279,6 +285,32 @@ class jarvisCodingClass(QThread):
 
         elif self.query == "crypto" or self.query == "cryptocurrency" or self.query == "bitcoin" or self.query == "etherium" or self.query == "kripto" or self.query == "kipto":
             crypto_analysis_assistant()
+
+        elif self.query == "movie" or self.query == "mobi" or self.query == "movi" or self.query == "muvi" or self.query == "mubi":
+            ui.jarvisPrint("Sure. Launching the movie recommendation system")
+            speak("Sure. Launching the movie recommendation system")
+            movie_recommendation_program()
+
+        elif self.query == "series" or self.query == "seriez" or self.query == "siriz" or self.query == "siris":
+            ui.jarvisPrint("Sure. Launching the series recommendation system")
+            speak("Sure. Launching the series recommendation system")
+            series_recommendation_program()
+
+        elif self.query == "business" or self.query == "bisnes" or self.query == "bisnez" or self.query == "bijnej" or self.query == "biznez":
+            ui.jarvisPrint("Sure. Launching the business recommendation system")
+            speak("Sure. Launching the business recommendation system")
+            business_recommendation()
+
+        elif self.query == "recipe" or self.query == "race" or self.query == "raci" or self.query == "rasipi" or self.query == "racipi":
+            ui.jarvisPrint("Sure. Launching the recipe recommendation system")
+            speak("Sure. Launching the recipe recommendation system")
+            recipe_recommendation_system()
+
+        elif self.query == "personal assistant":
+            ui.jarvisPrint("Sure. Launching the personal assistant")
+            speak("Sure. Launching the personal assistant")
+            webbrowser.open("https://speakify-personal-assistant.netlify.app/")
+            exit()
 
         elif 'wikipedia' in self.query:
             wikiQuery = self.query
