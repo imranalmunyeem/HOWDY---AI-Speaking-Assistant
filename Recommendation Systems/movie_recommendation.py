@@ -1,75 +1,50 @@
-import numpy as np
-import pandas as pd
-import tensorflow as tf
-from sklearn.model_selection import train_test_split
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, Embedding, Flatten, Dot, Concatenate
+import imdb
 
-# Load MovieLens dataset (download it from https://grouplens.org/datasets/movielens/)
-data = pd.read_csv("D:\Python Projects\Python-AI-Projects\HOWDY - AI Speaking Assistant\Recommendation Systems\movies.dat")  # Replace with your actual path
-ratings = pd.read_csv("D:\Python Projects\Python-AI-Projects\HOWDY - AI Speaking Assistant\Recommendation Systems\ratings.dat")  # Replace with your actual path
+def get_user_input():
+    age = int(input("Enter your age: "))
+    genre_movie = input("Enter your favorite movie genre: ")
+    genre_series = input("Enter your favorite series genre: ")
+    return age, genre_movie, genre_series
 
-# Merge movie and ratings data
-df = pd.merge(ratings, data, on='movieId')
+def get_recommendations(age, genre_movie, genre_series):
+    ia = imdb.IMDb()
 
-# Create user and movie indices
-df['userId'] = df['userId'].astype("category").cat.codes.values
-df['movieId'] = df['movieId'].astype("category").cat.codes.values
+    # Search for top-rated movies and series
+    top_movies = ia.get_top250_movies()[:5]
+    top_series = ia.get_top250_tv()[:5]
 
-# Split the dataset
-train, test = train_test_split(df, test_size=0.2, random_state=42)
+    # Search for best-rated movies and series based on user genre preferences
+    best_movies = ia.search_movie(genre_movie)[:5]
+    best_series = ia.search_movie(genre_series)[:5]
 
-# Build the neural network model
-num_users = len(df['userId'].unique())
-num_movies = len(df['movieId'].unique())
-embedding_size = 50
+    # Search for good-rated movies and series based on user genre preferences
+    good_movies = ia.search_movie(genre_movie)[:5]
+    good_series = ia.search_movie(genre_series)[:5]
 
-# User input
-user_input = Input(shape=(1,), name='user_input')
-user_embedding = Embedding(input_dim=num_users, output_dim=embedding_size)(user_input)
-user_embedding = Flatten()(user_embedding)
+    return {
+        "Top Movies": top_movies,
+        "Top Series": top_series,
+        "Best Movies": best_movies,
+        "Best Series": best_series,
+        "Good Movies": good_movies,
+        "Good Series": good_series,
+    }
 
-# Movie input
-movie_input = Input(shape=(1,), name='movie_input')
-movie_embedding = Embedding(input_dim=num_movies, output_dim=embedding_size)(movie_input)
-movie_embedding = Flatten()(movie_embedding)
+def display_recommendations(recommendations):
+    print("\nRecommendations:")
+    for category, items in recommendations.items():
+        print(f"\n{category}:")
+        for item in items:
+            title = item.get('title', 'N/A')
+            year = item.get('year', 'N/A')
+            rating = item.data.get('rating', 'N/A')
+            print(f"- {title} ({year}) - IMDb Rating: {rating}")
 
-# Concatenate user and movie embeddings
-merged = Concatenate()([user_embedding, movie_embedding])
+def main():
+    print("Welcome to the Movie and Series Recommendation Program!")
+    age, genre_movie, genre_series = get_user_input()
+    recommendations = get_recommendations(age, genre_movie, genre_series)
+    display_recommendations(recommendations)
 
-# Dense layers
-dense1 = tf.keras.layers.Dense(128, activation='relu')(merged)
-dense2 = tf.keras.layers.Dense(64, activation='relu')(dense1)
-
-# Output layer
-output = tf.keras.layers.Dense(1)(dense2)
-
-# Build and compile the model
-model = Model(inputs=[user_input, movie_input], outputs=output)
-model.compile(optimizer='adam', loss='mean_squared_error')
-
-# Train the model
-model.fit([train['userId'], train['movieId']], train['rating'], epochs=5, verbose=1)
-
-# Evaluate the model
-test_loss = model.evaluate([test['userId'], test['movieId']], test['rating'])
-print(f'Test Loss: {test_loss}')
-
-# Make predictions for a specific user
-user_id = 0  # Replace with the user ID you want recommendations for
-movies_not_rated_by_user = df.loc[df['userId'] == user_id, 'movieId'].unique()
-
-user_movie_input = np.array([user_id] * len(movies_not_rated_by_user))
-predictions = model.predict([user_movie_input, movies_not_rated_by_user])
-
-# Get recommended movies
-recommendations = pd.DataFrame({'movieId': movies_not_rated_by_user, 'prediction': predictions.flatten()})
-recommendations = recommendations.sort_values(by='prediction', ascending=False)
-
-# Display top N recommendations
-top_n = 5
-top_recommendations = recommendations.head(top_n)
-top_recommendations = pd.merge(top_recommendations, data[['movieId', 'title']], on='movieId')
-
-print(f"\nTop {top_n} movie recommendations for User {user_id}:\n")
-print(top_recommendations[['title', 'prediction']])
+if __name__ == "__main__":
+    main()
