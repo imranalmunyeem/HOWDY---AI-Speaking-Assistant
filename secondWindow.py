@@ -1,4 +1,3 @@
-
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtCore import pyqtSlot, QTimer
 from PyQt5.QtWidgets import QDialog
@@ -11,17 +10,17 @@ from secondWindowGUI import Ui_MainWindow
 
 
 def nameList(nameofImg):
-    if nameofImg.startswith('GP',0):
+    if nameofImg.startswith('GP', 0):
         return "GP Muthu"
     elif nameofImg.startswith("Steve", 0):
         return "Steve Rogers"
-    elif nameofImg.startswith("Natasha",0):
+    elif nameofImg.startswith("Natasha", 0):
         return "Natasha Romanoff"
-    elif nameofImg.startswith("Tony",0):
+    elif nameofImg.startswith("Tony", 0):
         return "Tony Stark"
-    elif nameofImg.startswith("Thor",0):
+    elif nameofImg.startswith("Thor", 0):
         return "Thor"
-    elif nameofImg.startswith("Karthick",0):
+    elif nameofImg.startswith("Karthick", 0):
         return "Karthick"
 
 
@@ -39,7 +38,6 @@ class Ui_SecondWindow(QDialog):
         self.image = None
 
         self.runSlot()
-
 
     def sendToLoginScreen(self):
         from loginWndow import Ui_LoginPage
@@ -92,7 +90,6 @@ class Ui_SecondWindow(QDialog):
         ret, self.image = self.capture.read()
         self.displayImage(self.image, self.encode_list, self.class_names, 1)
 
-
     def displayImage(self, image, encode_list, class_names, window=1):
         image = cv2.resize(image, (640, 480))
         try:
@@ -112,7 +109,7 @@ class Ui_SecondWindow(QDialog):
             self.mainui.videoLabel.setPixmap(QPixmap.fromImage(outImage))
             self.mainui.videoLabel.setScaledContents(True)
             if self.name == "Karthick":
-                self.connectJarvisMainWindow()
+                self.connectHowdyMainWindow()
                 self.timer.stop()
 
     def face_rec_(self, frame, encode_list_known, class_names):
@@ -136,9 +133,7 @@ class Ui_SecondWindow(QDialog):
 
         return frame
 
-
-
-    def connectJarvisMainWindow(self):
+    def connectHowdyMainWindow(self):
         from subprocess import call
         self.close()
-        call(["python", 'JARVISmainfile.py'])
+        call(["python", 'HOWDYmainfile.py'])

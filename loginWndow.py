@@ -3,7 +3,6 @@ from PyQt5 import QtGui
 
 from loginWindowGUI import Ui_loginWindow
 
-
 class Ui_LoginPage(QDialog):
     def __init__(self):
         super(Ui_LoginPage, self).__init__()
@@ -26,8 +25,7 @@ class Ui_LoginPage(QDialog):
         password = self.loginui.passwordEdit.text()
         if username == "imran" and password == "imran":
             print("Login Successful")
-            self.connectJarvisMainWindow()
-
+            self.connectHowdyMainWindow()
         else:
             self.playIllegalEntry()
 
@@ -44,10 +42,10 @@ class Ui_LoginPage(QDialog):
         self.loginui.passwordEdit.clear()
         self.stopIllegalEntry()
 
-    def connectJarvisMainWindow(self):
+    def connectHowdyMainWindow(self):
         from subprocess import call
         self.close()
-        call(["python", 'JARVISmainfile.py'])
+        call(["python", 'HOWDYmainfile.py'])
 
     def backFunction(self):
         from secondWindow import Ui_SecondWindow

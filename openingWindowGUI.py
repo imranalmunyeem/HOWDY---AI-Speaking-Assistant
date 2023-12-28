@@ -1,20 +1,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_firstWindow(object):
     def setupUi(self, firstWindow):
         firstWindow.setObjectName("firstWindow")
         firstWindow.resize(690, 550)
         firstWindow.setStyleSheet("background-color: rgb(0, 0, 0);")
 
-        self.jarvisIntroLabel = QtWidgets.QLabel(firstWindow)
-        self.jarvisIntroLabel.setGeometry(QtCore.QRect(-2, 67, 690, 385))
-        self.jarvisIntroLabel.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
-        self.jarvisIntroLabel.setText("")
-        self.jarvisIntroLabel.setPixmap(QtGui.QPixmap("D:/Python Projects/Python-AI-Projects/HOWDY - AI Speaking Assistant/gui_tools/Hero_Template.gif"))
-        self.jarvisIntroLabel.setScaledContents(True)
-        self.jarvisIntroLabel.setWordWrap(False)
-        self.jarvisIntroLabel.setObjectName("jarvisIntroLabel")
+        self.howdyIntroLabel = QtWidgets.QLabel(firstWindow)  # Updated here
+        self.howdyIntroLabel.setGeometry(QtCore.QRect(-2, 67, 690, 385))
+        self.howdyIntroLabel.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        self.howdyIntroLabel.setText("")
+        self.howdyIntroLabel.setPixmap(QtGui.QPixmap("D:/Python Projects/Python-AI-Projects/HOWDY - AI Speaking Assistant/gui_tools/Hero_Template.gif"))
+        self.howdyIntroLabel.setScaledContents(True)
+        self.howdyIntroLabel.setWordWrap(False)
+        self.howdyIntroLabel.setObjectName("howdyIntroLabel")  # Updated here
 
         self.startButton = QtWidgets.QPushButton(firstWindow)
         self.startButton.setGeometry(QtCore.QRect(0, 450, 261, 91))
@@ -65,8 +64,7 @@ class Ui_firstWindow(object):
 
     def retranslateUi(self, firstWindow):
         _translate = QtCore.QCoreApplication.translate
-        firstWindow.setWindowTitle(_translate("firstWindow", "J.A.R.V.I.S Main Page"))
-
+        firstWindow.setWindowTitle(_translate("firstWindow", "HOWDY --- Main Page"))
 
 if __name__ == "__main__":
     import sys

@@ -1,12 +1,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1080, 720)
         MainWindow.setStyleSheet("background-color: rgb(0, 0, 0);")
-
 
         self.videoLabel = QtWidgets.QLabel(MainWindow)
         self.videoLabel.setGeometry(QtCore.QRect(5, 70, 640, 480))
@@ -18,7 +16,6 @@ class Ui_MainWindow(object):
                                       "border-width: 1px 1px 1px 1px;")
         self.videoLabel.setText("If you read this, then there is something wrong with your Web Camera!")
         self.videoLabel.setObjectName("videoLabel")
-
 
         self.kartisTechLabel = QtWidgets.QLabel(MainWindow)
         self.kartisTechLabel.setGeometry(QtCore.QRect(220, 0, 640, 71))
@@ -41,10 +38,6 @@ class Ui_MainWindow(object):
         self.ironmanLabel.setScaledContents(True)
         self.ironmanLabel.setObjectName("ironmanLabel")
 
-
-
-
-
         self.loginButton = QtWidgets.QPushButton(MainWindow)
         self.loginButton.setGeometry(QtCore.QRect(89, 600, 231, 101))
         self.loginButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -54,8 +47,6 @@ class Ui_MainWindow(object):
         self.loginButton.setText("")
         self.loginButton.setFlat(False)
         self.loginButton.setObjectName("loginButton")
-
-
 
         self.exitButton = QtWidgets.QPushButton(MainWindow)
         self.exitButton.setGeometry(QtCore.QRect(320, 602, 231, 101))
@@ -67,7 +58,6 @@ class Ui_MainWindow(object):
         self.exitButton.setFlat(False)
         self.exitButton.setObjectName("exitButton")
 
-
         self.ironmanLabel.raise_()
         self.kartisTechLabel.raise_()
 
@@ -77,7 +67,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "HOWDY Face Recognition"))
-
 
 if __name__ == "__main__":
     import sys

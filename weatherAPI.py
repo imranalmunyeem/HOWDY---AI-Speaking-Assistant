@@ -5,8 +5,8 @@ import requests
 def weatherCheck():
     global wind_report, weather_report, pressure, humidity, temp_feel_like, temperatur
     BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
-    CITY = "Luton"
-    API_KEY = "YOUR_API_KEY_HERE"
+    CITY = "Bedfordshire"
+    API_KEY = "ab20aad7fd6ee16de220a8ac7982f5b0"
     URL = BASE_URL + "q=" + CITY + "&units=imperialAPPID=" + API_KEY
     response = requests.get(URL)
     if response.status_code == 200:

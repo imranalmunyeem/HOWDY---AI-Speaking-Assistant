@@ -1,7 +1,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_loginWindow(object):
     def setupUi(self, loginWindow):
         loginWindow.setObjectName("loginWindow")
@@ -9,16 +8,16 @@ class Ui_loginWindow(object):
 
         loginWindow.setStyleSheet("background-color: rgb(0, 0, 0);")
 
-        self.kartisTechLabel = QtWidgets.QLabel(loginWindow)
-        self.kartisTechLabel.setGeometry(QtCore.QRect(220, 0, 640, 81))
-        self.kartisTechLabel.setStyleSheet("background-color: rgb(0, 0, 0);\n"
+        self.howdyTechLabel = QtWidgets.QLabel(loginWindow)
+        self.howdyTechLabel.setGeometry(QtCore.QRect(220, 0, 640, 81))
+        self.howdyTechLabel.setStyleSheet("background-color: rgb(0, 0, 0);\n"
                                            "color: rgb(255, 255, 255);\n"
                                            "background-color: transparent;\n"
                                            "border-color: rgb(255, 255, 255);")
-        self.kartisTechLabel.setText("")
-        self.kartisTechLabel.setPixmap(QtGui.QPixmap("D:/Python Projects/Python-AI-Projects/HOWDY - AI Speaking Assistant/gui_tools/KartisTechnology(white).png"))
-        self.kartisTechLabel.setScaledContents(True)
-        self.kartisTechLabel.setObjectName("kartisTechLabel")
+        self.howdyTechLabel.setText("")
+        self.howdyTechLabel.setPixmap(QtGui.QPixmap("D:/Python Projects/Python-AI-Projects/HOWDY - AI Speaking Assistant/gui_tools/KartisTechnology(white).png"))
+        self.howdyTechLabel.setScaledContents(True)
+        self.howdyTechLabel.setObjectName("howdyTechLabel")
 
         self.loginmainFrame = QtWidgets.QFrame(loginWindow)
         self.loginmainFrame.setGeometry(QtCore.QRect(220, 75, 640, 641))
@@ -96,9 +95,6 @@ class Ui_loginWindow(object):
         self.retryButton.setFlat(False)
         self.retryButton.setObjectName("retryButton")
 
-        self.retranslateUi(loginWindow)
-        QtCore.QMetaObject.connectSlotsByName(loginWindow)
-
         self.illegalentrylabel = QtWidgets.QLabel(self.loginmainFrame)
         self.illegalentrylabel.setEnabled(True)
         self.illegalentrylabel.setGeometry(QtCore.QRect(100, 90, 441, 351))
@@ -109,15 +105,11 @@ class Ui_loginWindow(object):
         self.illegalentrylabel.setScaledContents(True)
         self.illegalentrylabel.setObjectName("illegalentrylabel")
 
-
-
-
     def retranslateUi(self, loginWindow):
         _translate = QtCore.QCoreApplication.translate
         loginWindow.setWindowTitle(_translate("loginWindow", "HOWDY - Login"))
         self.passwordEdit.setPlaceholderText(_translate("loginWindow", "Password"))
         self.usernameEdit.setPlaceholderText(_translate("loginWindow", "Username"))
-
 
 if __name__ == "__main__":
     import sys
@@ -128,3 +120,4 @@ if __name__ == "__main__":
     ui.setupUi(loginWindow)
     loginWindow.show()
     sys.exit(app.exec_())
+

@@ -4,9 +4,7 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QApplication
 from PyQt5 import QtGui
 
-
 from openingWindowGUI import Ui_firstWindow
-
 
 class Ui_Dialog(QDialog):
     def __init__(self):
@@ -16,14 +14,12 @@ class Ui_Dialog(QDialog):
         self.firstui.setupUi(self)
 
         self.firstui.movie = QtGui.QMovie("D:/Python Projects/Python-AI-Projects/HOWDY - AI Speaking Assistant/gui_tools/Hero_Template.gif")
-        self.firstui.jarvisIntroLabel.setMovie(self.firstui.movie)
+        self.firstui.howdyIntroLabel.setMovie(self.firstui.movie)  # Updated here
         self.firstui.movie.start()
-
 
         self.firstui.startButton.clicked.connect(self.connectSecondWindow)
         self.firstui.loginButton.clicked.connect(self.connectLoginPage)
         self.firstui.exitButton.clicked.connect(self.close)
-
 
     def connectSecondWindow(self):
         from secondWindow import Ui_SecondWindow
@@ -36,8 +32,6 @@ class Ui_Dialog(QDialog):
         self._new_window = Ui_LoginPage()
         self._new_window.show()
         ui.close()
-
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
